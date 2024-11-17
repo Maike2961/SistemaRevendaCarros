@@ -1,0 +1,45 @@
+{%extends '_base.html'%}
+<title>{%block title%} Cadastro {%endblock title%}</title>
+{%block content%}
+<section class="my-6 p-6 bg-gray-100 rounded-xl">
+    <h1 class="mb-6 text-3xl">Cadastro</h1>
+    <div>
+        {%include '_message.html'%}
+        <form method="post">
+            {%csrf_token%}
+            <div class="mb-3">
+                <label for="username">Usuário</label>
+                {{form.username}}
+            </div>
+            
+            <div class="mb-3">
+                <label for="email">E-mail</label>
+                {{form.email}}
+            </div>
+            
+            <div class="mb-3">
+                <label for="nome">Seu Nome</label>
+                {{form.first_name}}
+            </div>
+
+            
+            <div class="mb-3">
+                <label for="sobrenome">Seu Sobrenome</label>
+                {{form.last_name}}
+            </div>
+            
+            <div class="mb-3">
+                <label for="password">Senha</label>
+                {{form.password1}}
+            </div>
+
+            <div class="mb-3">
+                <label for="password">Senha</label>
+                {{form.password2}}
+            </div>
+
+            <button type="submit" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Enviar</button>
+        </form>
+    </div>
+</section>
+{%endblock content%}
