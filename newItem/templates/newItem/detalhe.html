@@ -1,0 +1,25 @@
+{% extends '_base.html'%}
+
+{%block title%} Detalhes {%endblock title%}
+{%block content%}
+<section class="my-20 md:my-1 bg-gray-400">
+    <div class="border-2 text-center py-8 px-6 rounded-xl">
+        {%if item.imagem%}
+        <figure class="flex flex-row justify-center gap-x-8 items-center">
+            <img src="{{item.imagem.url}}" alt="{{imagem.nome}}" class="rounded-lg w-1/2 shadow-lg shadow-white">
+            <figcaption>
+                <ul class="text-right">
+                    <li class="mb-6 text-lg text-white">Nome: {{item.nome}}</li>
+                    <li class="mb-6 text-lg text-white">Marca: {{item.marca_carro}}</li>
+                    <li class="mb-6 text-lg text-white">Cor: {{item.cor}}</li>
+                    <li class="mb-6 text-lg text-white">Combustivel {{item.tipo_combustivel}}</li>
+                    <li class="mb-6 text-lg text-white">Preço R$:{{item.preco}}</li>
+                </ul>
+            </figcaption>
+        </figure>
+
+
+        {%endif%}
+    </div>
+</section>
+{%endblock content%}
