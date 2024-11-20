@@ -1,13 +1,18 @@
 from django.shortcuts import render, redirect
 from .forms import CadastroForm
+from newItem.models import Carro
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 
 
 @login_required
 def index(request):
-    print(request.user)
-    return render(request, "core/index.html")
+    
+    item = Carro.objects.all()
+    context = {
+        'item': item
+    }
+    return render(request, "core/index.html", context)
 
 def login(request):
     print(request.user)
