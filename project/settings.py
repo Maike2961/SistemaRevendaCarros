@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'newItem'
+    'newItem',
+    'dashboard'
 ]
 
 MIDDLEWARE = [
@@ -125,7 +126,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
