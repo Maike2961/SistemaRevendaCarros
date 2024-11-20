@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import CadastroCarroForm
+from .models import Carro
 from django.contrib.auth.decorators import login_required
 
 
@@ -23,3 +24,15 @@ def CadastroNovoCarro(request):
         'form': form
     }
     return render(request, "newItem/cadastroItem.html", context)
+
+@login_required
+def Detalhes(request, id):
+    item = Carro.objects.filter(id = id).first()
+    if item:
+        context = {
+            'item': item
+        }
+        return render(request, 'newItem/detalhe.html', context)
+    else:
+        messages.error(request, "Erro na requisição")
+        return redirect('index')
