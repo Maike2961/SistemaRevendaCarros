@@ -2,7 +2,22 @@
 
 <title>{%block title%} Inicio {%endblock title%}</title>
 {%block content%}
-<section>
-    <h1>Teste</h1>
+<section class="py-20">
+    {%include "_message.html" %}
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {%for i in item%}
+            <a href="{% url 'carro:detalhes' i.id %}">
+                <figure class="bg-gray-100 rounded-xl border px-6 py-8 w-full">
+                    <img src="{{i.imagem.url}}" alt="{{i.nome}}" class="w-full h-48 object-center rounded-t-lg">
+
+                    <figcaption class="text-lg text-center font-bold-200 py-2">
+                        {{i.nome}}
+                    </figcaption>
+                </figure>
+            </a>
+            {%endfor%}
+        </div>
+    </div>
 </section>
 {%endblock content%}
