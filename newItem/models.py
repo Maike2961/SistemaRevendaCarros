@@ -31,8 +31,9 @@ class Carro(Base):
     nome = models.CharField("Nome", max_length=255)
     chassi = models.CharField("Chassi", unique=True, max_length=255)
     marca_carro = models.ForeignKey(Marca, related_name="items", on_delete=models.CASCADE)
-    cor = models.CharField("Cor", max_length=10)
+    cor = models.CharField("Cor", max_length=15)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
+    
     tipo_combustivel = models.CharField(choices=TIPO_COMBUSTIVEL, max_length=20, default="GASOLINA")
     ano = models.IntegerField()
     imagem = models.ImageField(upload_to="media")
