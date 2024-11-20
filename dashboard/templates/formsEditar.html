@@ -1,0 +1,20 @@
+{%extends '_base.html'%}
+
+{%block title%}Editar Carro{%endblock title%}
+
+{%block content%}
+<section>
+    <h1 class="mb-6 text-3xl">Editar Carro</h1>
+
+    {%include "_message.html" %}
+    <form method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+
+        <div class="space-x-3">
+            {{form.as_p}}
+        </div>
+        <button type="submit" class="py-4 mt-5 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Enviar</button>
+    </form>
+
+</section>
+{%endblock content%}
