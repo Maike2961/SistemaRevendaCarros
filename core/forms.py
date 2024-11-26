@@ -27,3 +27,6 @@ class CadastroForm(UserCreationForm):
 
         print(password1, password2)
         return cleade
+    
+class FiltroMarcaForm(forms.Form):
+    Pesquisa = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Busque aqui..', 'class': 'w-1/2 py-4 px-6 rounded-xl mb-8 bg-gray-100'}))
