@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <nav class="flex justify-between items-center px-6 py-6 bg-gray-400">
+    <nav class="flex justify-between items-center px-6 py-6 bg-gray-200">
 
         <a href="{% url 'index' %}">
-            <p class="text-2xl text-white font-semibold">KNIB</p>
+            <p class="text-2xl font-semibold">{%if request.user.is_authenticated%}Olá, {{request.user}} {%else%} KNIB {%endif%}</p>
         </a>
 
         {%if request.user.is_authenticated%}
@@ -44,18 +44,18 @@
         
     </nav>
     <main class="container px-6 py-6 mx-auto">
+        {%include '_message.html' %}
         {%block content%}
         {%endblock content%}
     </main>
 
-    <footer class="px-6 py-6 flex justify-between bg-gray-400">
-
+    <footer class="px-6 py-6 flex justify-between bg-gray-200 h-80 mt-10">
         <div class="flex flex-col justify-center items-center">
-            <h2 class="text-lg text-white">Made In Brazil</h2>
-            <div class="w-2/3 p-10">
-                <h3 class="mb-5 font-semibold text-white">About</h3>
+            <h2 class="text-lg">Made In Brazil</h2>
+            <div class="w-2/3">
+                <h3 class="mb-5 font-semibold ">About</h3>
 
-                <p class="text-lg text-white mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia est
+                <p class="text-lg mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia est
                     quidem
                     nisi repellendus esse non vitae consequuntur harum cumque hic! Earum consequuntur velit totam minus
                     sint
