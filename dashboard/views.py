@@ -21,7 +21,7 @@ def editar(request, id):
         form = editarCarroForm(request.POST, request.FILES, instance=item)
 
         if form.is_valid():
-            print("Editado")
+            form.save()
             messages.success(request, 'Item Editado com sucesso')
             return redirect("dashboard:dashboard")
     else:
@@ -31,3 +31,14 @@ def editar(request, id):
         'form': form
     }
     return render(request, 'formsEditar.html', context)
+
+@login_required
+def delete(request, id):
+    item = Carro.objects.get(id=id)
+    if item:
+        item.delete()
+        messages.success(request, 'Excluido com sucesso')
+    else:
+        messages.error(request, 'Erro ao Excluir')
+    return redirect("dashboard:dashboard")
+        
