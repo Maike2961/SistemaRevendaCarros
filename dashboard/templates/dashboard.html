@@ -2,29 +2,38 @@
 
 {%block title%} Dashboard {%endblock title%}
 
-{%include '_message.html' %}
 {%block content%}
-<section class="my-20 md:my-1 bg-gray-400">
+{%if item%}
+<section class="my-20 md:my-1 bg-gray-100">
     <div class="flex flex-col justify-center items-center border-2 text-center py-8 px-6 rounded-xl">
         {%if item.imagem%}
         <figure class="flex flex-row justify-center gap-x-8 items-center">
             <img src="{{item.imagem.url}}" alt="{{imagem.nome}}" class="rounded-lg w-1/2 shadow-lg shadow-white">
             <figcaption>
-                <ul class="text-right">
-                    <li class="mb-6 text-lg text-white">Nome: {{item.nome}}</li>
-                    <li class="mb-6 text-lg text-white">Marca: {{item.marca_carro}}</li>
-                    <li class="mb-6 text-lg text-white">Cor: {{item.cor}}</li>
-                    <li class="mb-6 text-lg text-white">Combustivel {{item.tipo_combustivel}}</li>
-                    <li class="mb-6 text-lg text-white">Preço R$:{{item.preco}}</li>
+                <ul class="text-center">
+                    <li class="mb-6 text-lg text-white bg-teal-500 px-6 py-6 rounded-xl">Nome: {{item.nome}}</li>
+                    <li class="mb-6 text-lg text-white bg-teal-500 px-6 py-6 rounded-xl">Marca: {{item.marca_carro}}</li>
+                    <li class="mb-6 text-lg text-white bg-teal-500 px-6 py-6 rounded-xl">Cor: {{item.cor}}</li>
+                    <li class="mb-6 text-lg text-white bg-teal-500 px-6 py-6 rounded-xl">Combustivel: {{item.tipo_combustivel}}</li>
+                    <li class="mb-6 text-lg text-white bg-teal-500 px-6 py-6 rounded-xl">Preço:{{item.preco_formatado}}</li>
                 </ul>
             </figcaption>
         </figure>
 
         <div class="my-8">
-            <a href="{% url 'dashboard:editar' item.id %}"><button type="submit" class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Editar</button></a>
-            <a href="#"><button type="submit" class="py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white">Deletar</button></a>
+            <a href="{% url 'dashboard:editar' item.id %}"><button type="submit"
+                    class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white">Editar</button></a>
+            <a href="{% url 'dashboard:delete' item.id %}"><button type="submit"
+                    class="py-4 px-8 text-lg bg-red-500 hover:bg-red-700 rounded-xl text-white">Deletar</button></a>
         </div>
         {%endif%}
     </div>
 </section>
+{%else%}
+<section class="container mx-auto">
+    <div class="mt-8 text-center bg-teal-700 rounded-xl px-8 py-8">
+        <h1 class="text-2xl text-white">Sem Items</h1>
+    </div>
+</section>
+{%endif%}
 {%endblock content%}
