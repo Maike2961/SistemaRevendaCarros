@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13-alpine
+
+    container_name: postgres_db
+    
+    volumes:
+      - db_python:/var/lib/postgresql/data
+    
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+  
+  
+  app:
+    build:
+      context: .
+    
+    container_name: django_app
+
+    ports:
+      - "8000:8000"
+    
+    volumes:
+      - .:/app
+    
+    depends_on:
+      - db
+
+    command: sh -c "python manage.py migrate && 
+                    python manage.py runserver 0.0.0.0:8000"
+    
+    environment:
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+
+volumes:
+  db_python:
+
